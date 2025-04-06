@@ -154,27 +154,27 @@ if instrument == 'NSE Equity Market':
 
             st.subheader('📄 Raw Data')
             st.dataframe(stock_data)
+            tradingview_symbol = f"NSE:{ticker}"
             components.html(
-                """<!-- TradingView Widget BEGIN -->
+                f"""<!-- TradingView Widget BEGIN -->
                 <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"></a></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
-                {
-                "interval": "1D",
-                "width": "425",
-                "isTransparent": true,
-                "height": "450",
-                "symbol": "NSE:SBIN",
-                "showIntervalTabs": true,
-                "displayMode": "single",
-                "locale": "en",
-                "colorTheme": "dark"
-                }
-                </script>
+                  <div class="tradingview-widget-container__widget"></div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                  {{
+                    "interval": "1D",
+                    "width": "425",
+                    "isTransparent": true,
+                    "height": "450",
+                    "symbol": "{tradingview_symbol}",
+                    "showIntervalTabs": true,
+                    "displayMode": "single",
+                    "locale": "en",
+                    "colorTheme": "dark"
+                  }}
+                  </script>
                 </div>
-                <!-- TradingView Widget END -->""",
-                height=900  
+                <!-- TradingView Widget END -->""",
+                height=900
             )
         else:
             st.warning(f"⚠ No data available for the stock symbol: {ticker}. Please ensure it is a valid NSE ticker (e.g., SBIN, INFY).")
