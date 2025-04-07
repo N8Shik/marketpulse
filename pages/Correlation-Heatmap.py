@@ -10,7 +10,7 @@ from collections import defaultdict
 
 # Load environment variables
 load_dotenv()
-FRED_API_KEY = "a9e4dd54b454e8828d8ef26a11dd314d"
+FRED_API_KEY = st.secrets["FRED_API_KEY"]
 if not FRED_API_KEY:
     st.error("FRED API Key not found. Please set it in your .env file.")
     st.stop()
